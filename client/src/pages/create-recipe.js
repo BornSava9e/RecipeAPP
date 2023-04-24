@@ -38,9 +38,16 @@ export const CreateRecipe = () =>{
     const onSubmit = async (event) =>{
         event.preventDefault();
         try{
-            await axios.post("https://recipe-app-backend-flax.vercel.app/recipes", {...recipe},
+            if(recipe.name == "") return alert("name is required")
+            if(recipe.instructions == "") return alert("instructions is required")
+            if(recipe.imageUrl == "") return alert("imageUrl is required")
+            if(recipe.cookingTime == "") return alert("cookingTime is required")
+            if(recipe.userOwner == "") return alert("userOwner is required")
+            if(recipe.ingredients == "") return alert("ingredients is required")
+           let data = await axios.post("https://recipe-app-backend-flax.vercel.app/recipes", {...recipe},
             {headers: {authorization : cookies.access_token}})
             alert("Recipe created")
+
             navigate("/")
         }catch(err){
             console.error(err)

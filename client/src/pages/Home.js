@@ -60,12 +60,12 @@ export const Home = () => {
           <li key={recipe._id}>
             <div>
               <h2>{recipe.name}</h2>
-              <button
+              {(cookies.access_token) ? <button
                 onClick={() => saveRecipe(recipe._id)}
                 disabled={isRecipeSaved(recipe._id)}
               >
                {isRecipeSaved(recipe._id) ? "Saved" : "Save"}
-              </button>
+              </button> : <></>}
             </div>
             <div className="instructions">
               <p>{recipe.instructions}</p>
